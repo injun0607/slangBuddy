@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>욕메이트</title>
+    <link rel="stylesheet" href="/css/common/main.css">
+</head>
+<body>
+<div class="chat-container">
+    <header>
+        <h1>욕메이트</h1>
+        <p>힘들 땐, 내가 네 편이야! 💬</p>
+    </header>
+    <div class="chat-window">
+        <!-- 대화 내용이 여기에 동적으로 추가됨 -->
+    </div>
+    <div class="input-section">
+        <input type="text" id="name" placeholder="이름을 입력하세요">
+        <input type="text" id="situation" placeholder="상황을 입력하세요">
+        <select id="intensity">
+            <option value="low">귀여운 욕</option>
+            <option value="medium">적당한 욕</option>
+            <option value="high">매운 욕</option>
+        </select>
+        <button id="send-btn">전송</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
