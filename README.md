@@ -1,0 +1,2 @@
+# slangBuddy
+project slang Buddy
