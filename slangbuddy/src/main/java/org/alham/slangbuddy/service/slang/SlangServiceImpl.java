@@ -5,6 +5,8 @@ import org.alham.slangbuddy.document.SlangDocument;
 import org.alham.slangbuddy.dto.SlangDTO;
 import org.alham.slangbuddy.mapper.SlangMapper;
 import org.alham.slangbuddy.repository.slang.SlangRepository;
+import org.alham.slangbuddy.service.ai.AiResponseService;
+import org.alham.slangbuddy.service.ai.AiResponseServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,16 +14,19 @@ import org.springframework.stereotype.Service;
 public class SlangServiceImpl implements SlangService{
 
     private final SlangRepository slangRepository;
+    private final AiResponseService aiResponseService;
     private final SlangMapper slangMapper;
 
     @Override
     public SlangDTO create(SlangDTO slangDTO) {
 
+        String aiResponse = aiResponseService.getAiResponse(slangDTO);
+        slangDTO.setAnswer(aiResponse);
+
         SlangDocument slangDocument = slangDTO.isLogin() ?
                 slangMapper.createDocumentLogin(slangDTO) : slangMapper.createDocumentNotLogin(slangDTO);
 
         slangRepository.save(slangDocument);
-
-        return null;
+        return slangDTO;
     }
 }
