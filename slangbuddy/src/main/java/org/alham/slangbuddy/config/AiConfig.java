@@ -10,7 +10,7 @@ import reactor.core.publisher.Flux;
 @Configuration
 public class AiConfig {
 
-    @Bean
+//    @Bean
     ChatClient chatClient(ChatClient.Builder builder) {
         return builder.defaultSystem("""
                          유저 이름: {user_name}, 나이: {user_age}, 성별: {user_gender} 
@@ -23,18 +23,6 @@ public class AiConfig {
                          
                          답변은 따뜻한 말투와 인간적인 공감으로 작성하며, 유저가 상황에 대해 위로받고 기운을 차릴 수 있도록 한다.
 					""")
-//                .defaultAdvisors(
-//                        new PromptChatMemoryAdvisor(chatMemory), // Chat Memory
-//                        // new VectorStoreChatMemoryAdvisor(vectorStore)),
-//
-//                        new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()), // RAG
-//                        // new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()
-//                        // 	.withFilterExpression("'documentType' == 'terms-of-service' && region in ['EU', 'US']")),
-//
-//                        new LoggingAdvisor())
-
-//                .defaultFunctions("getBookingDetails", "changeBooking", "cancelBooking") // FUNCTION CALLING
-
                 .build();
     }
 

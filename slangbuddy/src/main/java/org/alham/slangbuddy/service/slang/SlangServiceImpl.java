@@ -9,6 +9,8 @@ import org.alham.slangbuddy.service.ai.AiResponseService;
 import org.alham.slangbuddy.service.ai.AiResponseServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class SlangServiceImpl implements SlangService{
@@ -28,5 +30,10 @@ public class SlangServiceImpl implements SlangService{
 
         slangRepository.save(slangDocument);
         return slangDTO;
+    }
+
+    @Override
+    public List<SlangDTO> findListByUserId(Long userId) {
+        return null;
     }
 }

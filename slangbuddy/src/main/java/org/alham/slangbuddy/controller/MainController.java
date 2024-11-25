@@ -18,11 +18,13 @@ public class MainController {
 
     private final AiResponseService aiResponseService;
 
-    private final ChatClient chatClient;
+//    private final ChatClient chatClient;
     @PostMapping("/ai/response")
     public String aiResponse(@RequestBody SlangDTO slangDTO) {
+        String aiResponse = aiResponseService.getAiResponse(slangDTO);
+        System.out.println(aiResponse);
 
-        return aiResponseService.getAiResponse(slangDTO);
+        return aiResponse;
     }
 
 
