@@ -34,6 +34,7 @@ public class SlangServiceImpl implements SlangService{
 
     @Override
     public List<SlangDTO> findListByUserId(Long userId) {
-        return null;
+        List<SlangDocument> slangDocumentList = slangRepository.findListByUserId(userId);
+        return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
     }
 }

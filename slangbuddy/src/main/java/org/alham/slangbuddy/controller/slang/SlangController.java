@@ -4,10 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.alham.slangbuddy.dto.SlangDTO;
 import org.alham.slangbuddy.service.slang.SlangService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/slang")
@@ -22,13 +21,14 @@ public class SlangController {
     }
 
     @PostMapping("/create")
-    public SlangDTO create(SlangDTO slangDTO){
-        /**
-         * slangDTO 받고 ->
-         * slangAnswer 받고 ->
-         */
+    public SlangDTO create(@RequestBody SlangDTO slangDTO){
 
         return slangService.create(slangDTO);
+    }
+
+    @GetMapping("/find/{userId}")
+    public List<SlangDTO> slangList(@PathVariable Long userId){
+        return slangService.findListByUserId(userId);
     }
 
 

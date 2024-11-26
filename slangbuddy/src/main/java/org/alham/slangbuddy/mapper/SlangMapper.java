@@ -29,5 +29,24 @@ public class SlangMapper {
     }
 
 
+    public SlangDTO createDTOLogin(SlangDocument slangDocument){
+        return SlangDTO.builder()
+                .userId(slangDocument.getUserId())
+                .name(slangDocument.getName())
+                .description(slangDocument.getDescription())
+                .intensity(slangDocument.getIntensity())
+                .answer(slangDocument.getAnswer())
+                .login(true)
+                .build();
+    }
 
+    public SlangDTO createDTONotLogin(SlangDocument slangDocument){
+        return SlangDTO.builder()
+                .name(slangDocument.getName())
+                .description(slangDocument.getDescription())
+                .intensity(slangDocument.getIntensity())
+                .answer(slangDocument.getAnswer())
+                .login(false)
+                .build();
+    }
 }
