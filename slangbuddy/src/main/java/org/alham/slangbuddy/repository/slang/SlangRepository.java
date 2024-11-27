@@ -9,4 +9,6 @@ public interface SlangRepository extends MongoRepository<SlangDocument, String>{
 
     public List<SlangDocument> findListByUserId(Long userId);
 
+    public List<SlangDocument> findListByUserIdAndPermanent(Long userId, boolean permanent);
+
 }

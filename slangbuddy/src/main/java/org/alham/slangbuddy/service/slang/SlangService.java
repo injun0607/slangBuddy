@@ -11,6 +11,11 @@ public interface SlangService {
 
     public List<SlangDTO> findListByUserId(Long userId);
 
+    public List<SlangDTO> updatePermanent(Long userId, boolean permanent ,List<String> slangIdList);
+
+    public List<SlangDTO> findListByUserIdAndPermanent(Long userId, boolean permanent);
+
+
 }
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

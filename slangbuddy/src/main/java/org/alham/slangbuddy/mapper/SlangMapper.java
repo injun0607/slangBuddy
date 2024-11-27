@@ -31,12 +31,13 @@ public class SlangMapper {
 
     public SlangDTO createDTOLogin(SlangDocument slangDocument){
         return SlangDTO.builder()
+                .id(slangDocument.getId())
                 .userId(slangDocument.getUserId())
                 .name(slangDocument.getName())
                 .description(slangDocument.getDescription())
                 .intensity(slangDocument.getIntensity())
                 .answer(slangDocument.getAnswer())
-                .login(true)
+                .login(slangDocument.isLogin())
                 .build();
     }
 
@@ -46,7 +47,7 @@ public class SlangMapper {
                 .description(slangDocument.getDescription())
                 .intensity(slangDocument.getIntensity())
                 .answer(slangDocument.getAnswer())
-                .login(false)
+                .login(slangDocument.isLogin())
                 .build();
     }
 }

@@ -2,8 +2,8 @@ package org.alham.slangbuddy.service.ai;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.alham.slangbuddy.config.AiPrompt;
 import org.alham.slangbuddy.dto.SlangDTO;
-import org.alham.slangbuddy.enums.Intensity;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -34,16 +34,39 @@ public class AiResponseServiceImpl implements AiResponseService{
 
     public Flux<String> chat(SlangDTO slangDTO) {
 
-        return this.chatClient.prompt()
-                .system(s -> s.param("user_name", slangDTO.getName())
-                            .param("intensity", slangDTO.getIntensity().name())
-                            .param("user_description", slangDTO.getDescription())
-                            .param("user_age","28")
-                            .param("user_gender","남자")
-                )
-                .user(slangDTO.getDescription())
-//                .advisors(a -> a
-//                        .param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
-                .stream().content();
+        //모드에 따라 다른 대화를 제공
+        switch (slangDTO.getTemplate()) {
+            case BASIC:
+                return chatClient.prompt().system(s -> s.text(AiPrompt.DEFAULT_SYSTEM_CHAT)
+                        .param("user_name", slangDTO.getName())
+                        .param("intensity", slangDTO.getIntensity().name())
+                        .param("user_description", slangDTO.getDescription())
+                        .param("user_age", "28")).stream().content();
+
+            case HAM:
+                return chatClient.prompt().system(s -> s.text(AiPrompt.HAM_SYSTEM_CHAT))
+                        .user(slangDTO.getDescription())
+                        .stream()
+                        .content();
+            default:
+                return chatClient.prompt().system(s -> s.text(AiPrompt.DEFAULT_SYSTEM_CHAT)
+                        .param("user_name", slangDTO.getName())
+                        .param("intensity", slangDTO.getIntensity().name())
+                        .param("user_description", slangDTO.getDescription())
+                        .param("user_age", "28")).stream().content();
+
+
+//        return this.chatClient.prompt()
+//                .system(s -> s.param("user_name", slangDTO.getName())
+//                            .param("intensity", slangDTO.getIntensity().name())
+//                            .param("user_description", slangDTO.getDescription())
+//                            .param("user_age","28")
+//                            .param("user_gender","남자")
+//                )
+//                .user(slangDTO.getDescription())
+////                .advisors(a -> a
+////                        .param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
+//                .stream().content();
+        }
     }
 }

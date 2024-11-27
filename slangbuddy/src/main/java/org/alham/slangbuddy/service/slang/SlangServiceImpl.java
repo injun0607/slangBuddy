@@ -37,4 +37,24 @@ public class SlangServiceImpl implements SlangService{
         List<SlangDocument> slangDocumentList = slangRepository.findListByUserId(userId);
         return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
     }
+
+    @Override
+    public List<SlangDTO> updatePermanent(Long userId, boolean permanent ,List<String> slangIdList) {
+        List<SlangDocument> slangDocumentList = slangRepository.findListByUserId(userId);
+
+
+        //해당하는 항목 permanent true 로 변경
+        slangDocumentList.stream()
+                        .filter(slangDocument->slangIdList.contains(slangDocument.getId()))
+                        .forEach(slangDocument->slangDocument.updatePermanent(permanent));
+
+        slangRepository.saveAll(slangDocumentList);
+        return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
+    }
+
+    @Override
+    public List<SlangDTO> findListByUserIdAndPermanent(Long userId, boolean permanent) {
+        List<SlangDocument> slangDocumentList = slangRepository.findListByUserIdAndPermanent(userId, permanent);
+        return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
+    }
 }

@@ -23,6 +23,10 @@ public class SlangDocument {
     private Intensity intensity;
     private String answer;
     private boolean login;
+    //고정 시킬지 여부
+    private boolean permanent;
+    //기억 할지 여부
+    private boolean delete;
 
     @Builder
     public SlangDocument(long userId, String name, String description, Intensity intensity, String answer, boolean login) {
@@ -41,6 +45,10 @@ public class SlangDocument {
         this.intensity = intensity;
         this.answer = answer;
         this.login = login;
+    }
+
+    public void updatePermanent(boolean permanent) {
+        this.permanent = permanent;
     }
 
 
