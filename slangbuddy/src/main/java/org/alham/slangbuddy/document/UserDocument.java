@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.alham.slangbuddy.enums.UserLoginType;
 import org.alham.slangbuddy.enums.UserRole;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -19,7 +20,10 @@ public class UserDocument {
     private String id;
 
     private String name;
+
+    @Indexed(unique = true)
     private String userId;
+
     private int age;
     private UserLoginType loginType;
     private UserRole userRole;

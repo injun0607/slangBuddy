@@ -3,6 +3,7 @@ package org.alham.slangbuddy.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.alham.slangbuddy.dto.SlangDTO;
+import org.alham.slangbuddy.service.LoginService;
 import org.alham.slangbuddy.service.ai.AiResponseService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -18,8 +19,8 @@ import java.util.Map;
 public class MainController {
 
     private final AiResponseService aiResponseService;
-
     private final ChatClient chatClient;
+    private final LoginService loginService;
     @PostMapping("/ai/response")
     public String aiResponse(@RequestBody SlangDTO slangDTO) {
         String aiResponse = aiResponseService.getAiResponse(slangDTO);
@@ -35,6 +36,14 @@ public class MainController {
         ChatResponse description = chatClient.prompt().user(map.get("description")).call().chatResponse();
 
         return description.toString();
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody String userId){
+
+        String token = loginService.login(userId);
+
+        return "login";
     }
 
 
