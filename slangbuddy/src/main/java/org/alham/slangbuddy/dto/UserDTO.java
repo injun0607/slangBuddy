@@ -1,39 +1,37 @@
-package org.alham.slangbuddy.document;
+package org.alham.slangbuddy.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.*;
 import org.alham.slangbuddy.enums.UserLoginType;
 import org.alham.slangbuddy.enums.UserRole;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Document
 @Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class UserDocument {
-    @Id
+@Builder
+public class UserDTO {
+
     private String id;
 
     private String name;
 
-    @Indexed(unique = true)
     private String userId;
 
     private int age;
-    private UserLoginType loginType;
-    private UserRole userRole;
 
+    private UserLoginType loginType;
+
+    private UserRole userRole;
 
     private List<String> features = new ArrayList<>();
 
+
     @Builder
-    public UserDocument(String name, String userId, int age, UserLoginType loginType, UserRole userRole) {
+    public UserDTO(String name, String userId, int age, UserLoginType loginType, UserRole userRole){
         this.name = name;
         this.userId = userId;
         this.age = age;
@@ -41,5 +39,8 @@ public class UserDocument {
         this.userRole = userRole;
     }
 
+    public void updateFeatures(List<String> features){
+        this.features = features;
+    }
 
 }

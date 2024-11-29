@@ -38,14 +38,19 @@ public class MainController {
         return description.toString();
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login/start")
     public String login(@RequestBody String userId){
 
         String token = loginService.login(userId);
 
-        return "login";
+
+        return token;
     }
 
+    @GetMapping("/login/end")
+    public String loginEnd(){
+        return "loginEnd";
+    }
 
 
 }

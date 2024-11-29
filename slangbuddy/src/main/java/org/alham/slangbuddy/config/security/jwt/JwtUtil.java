@@ -15,7 +15,6 @@ import java.util.Date;
 public class JwtUtil {
 
     private final String SECRET_KEY = "AlhamAndSeoHee";
-    private final SecretKey KEY = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
 
     private SecretKey getSigningKey() {
