@@ -30,6 +30,15 @@ public class UserServiceImpl implements UserService{
 
         UserDocument userDocument = userRepository.findUserByUserId(userId);
 
-        return userMapper.createDTO(userDocument);
+        return userMapper.createDTOtWithFeature(userDocument);
+    }
+
+    @Override
+    public UserDTO updateUserFeatures(UserDTO userDTO) {
+
+        UserDocument userDocument = userRepository.findById(userDTO.getId()).orElseThrow();
+        userDocument.updateFeatures(userDTO.getFeatures());
+        UserDocument save = userRepository.save(userDocument);
+        return userMapper.createDTO(save);
     }
 }

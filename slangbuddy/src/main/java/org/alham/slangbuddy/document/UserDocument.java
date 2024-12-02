@@ -41,5 +41,9 @@ public class UserDocument {
         this.userRole = userRole;
     }
 
+    public void updateFeatures(List<String> features) {
+        this.features = features;
+    }
+
 
 }

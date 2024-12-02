@@ -17,8 +17,22 @@ public class UserMapper {
                 .build();
     }
 
+    public UserDTO createDTOtWithFeature(UserDocument userDocument){
+        UserDTO dto = UserDTO.builder()
+                .userId(userDocument.getUserId())
+                .name(userDocument.getName())
+                .age(userDocument.getAge())
+                .loginType(userDocument.getLoginType())
+                .userRole(userDocument.getUserRole())
+                .build();
+
+        dto.updateFeatures(userDocument.getFeatures());
+        return dto;
+    }
+
     public UserDTO createDTO(UserDocument userDocument) {
         return UserDTO.builder()
+                .id(userDocument.getId())
                 .userId(userDocument.getUserId())
                 .name(userDocument.getName())
                 .age(userDocument.getAge())

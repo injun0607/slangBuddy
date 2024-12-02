@@ -8,4 +8,6 @@ public interface UserService {
 
     public UserDTO findUserByUserId(String userId);
 
+    public UserDTO updateUserFeatures(UserDTO userDTO);
+
 }

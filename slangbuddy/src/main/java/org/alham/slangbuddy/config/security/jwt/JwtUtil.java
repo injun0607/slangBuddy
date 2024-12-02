@@ -14,7 +14,8 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "AlhamAndSeoHee";
+    //문자열은 최소 256비트(32글자정도) 이상이여야함
+    private final String SECRET_KEY = "AlhamAndSeoHeeisFirstProduction#@!@@";
 
 
     private SecretKey getSigningKey() {

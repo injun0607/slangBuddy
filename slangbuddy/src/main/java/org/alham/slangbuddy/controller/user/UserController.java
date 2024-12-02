@@ -25,6 +25,11 @@ public class UserController {
         return userService.findUserByUserId(userId);
     }
 
+    @PostMapping("/update/features")
+    public UserDTO updateUserFeatures(@RequestBody UserDTO userDTO){
+        return userService.updateUserFeatures(userDTO);
+    }
+
 
 
 
