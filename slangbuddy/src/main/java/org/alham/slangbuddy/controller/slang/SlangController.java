@@ -2,6 +2,7 @@ package org.alham.slangbuddy.controller.slang;
 
 import lombok.RequiredArgsConstructor;
 import org.alham.slangbuddy.dto.SlangDTO;
+import org.alham.slangbuddy.dto.SlangListDTO;
 import org.alham.slangbuddy.service.slang.SlangService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,18 +27,23 @@ public class SlangController {
     }
 
     @GetMapping("/find/{userId}")
-    public List<SlangDTO> slangList(@PathVariable Long userId){
+    public List<SlangDTO> slangList(@PathVariable String userId){
         return slangService.findListByUserId(userId);
     }
 
-    @PostMapping("/update/permanent/{userId}/{permanent}")
-    public List<SlangDTO> updatePermanent(@PathVariable(name = "userId") Long userId, @PathVariable(name = "permanent") boolean permanent, @RequestBody List<String> slangIdList) {
-        return slangService.updatePermanent(userId, permanent ,slangIdList);
+    @PostMapping("/update/permanent")
+    public List<SlangDTO> updatePermanent(@RequestBody SlangListDTO slangListDTO) {
+        return slangService.updatePermanent(slangListDTO.getUserId(), slangListDTO.isPermanent(), slangListDTO.getSlangDTOList());
     }
 
-    @GetMapping("/find/permanent/{userId}/{permanent}")
-    public List<SlangDTO> permanentSlangList(@PathVariable Long userId , @PathVariable boolean permanent){
+    @GetMapping("/find/permanent")
+    public List<SlangDTO> permanentSlangList(@RequestParam(name = "userId") String userId , @RequestParam(name = "permanent") boolean permanent){
         return slangService.findListByUserIdAndPermanent(userId, permanent);
+    }
+
+    @GetMapping("/find/permanent/template")
+    public List<SlangDTO> templateSlangList(@PathVariable String userId , @PathVariable boolean permanent, @PathVariable String template){
+        return null;
     }
 
 

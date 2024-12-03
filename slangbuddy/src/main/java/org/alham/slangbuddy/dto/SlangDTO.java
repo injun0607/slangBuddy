@@ -13,7 +13,7 @@ import org.alham.slangbuddy.enums.Template;
 public class SlangDTO {
 
     private String id;
-    private long userId;
+    private String userId;
     private String name;
     private String description;
     private Intensity intensity;
@@ -22,7 +22,7 @@ public class SlangDTO {
     private boolean login;
 
     @Builder
-    public SlangDTO(String id,long userId, String name, String description, String answer,Intensity intensity,Template template,boolean login) {
+    public SlangDTO(String id,String userId, String name, String description, String answer,Intensity intensity,Template template,boolean login) {
         this.id = id;
         this.userId = userId;
         this.name = name;

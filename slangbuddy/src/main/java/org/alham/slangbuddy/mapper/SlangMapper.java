@@ -24,6 +24,7 @@ public class SlangMapper {
                 .description(slangDTO.getDescription())
                 .intensity(slangDTO.getIntensity())
                 .answer(slangDTO.getAnswer())
+                .template(slangDTO.getTemplate())
                 .login(true)
                 .build();
     }
@@ -37,6 +38,7 @@ public class SlangMapper {
                 .description(slangDocument.getDescription())
                 .intensity(slangDocument.getIntensity())
                 .answer(slangDocument.getAnswer())
+                .template(slangDocument.getTemplate())
                 .login(slangDocument.isLogin())
                 .build();
     }

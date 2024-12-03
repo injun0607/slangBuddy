@@ -2,6 +2,7 @@ package org.alham.slangbuddy.service.slang;
 
 
 import org.alham.slangbuddy.dto.SlangDTO;
+import org.alham.slangbuddy.enums.Template;
 
 import java.util.List;
 
@@ -9,11 +10,13 @@ public interface SlangService {
 
     public SlangDTO create(SlangDTO slangDTO);
 
-    public List<SlangDTO> findListByUserId(Long userId);
+    public List<SlangDTO> findListByUserId(String userId);
 
-    public List<SlangDTO> updatePermanent(Long userId, boolean permanent ,List<String> slangIdList);
+    public List<SlangDTO> updatePermanent(String userId, boolean permanent ,List<SlangDTO> slangDtoList);
 
-    public List<SlangDTO> findListByUserIdAndPermanent(Long userId, boolean permanent);
+    public List<SlangDTO> findListByUserIdAndPermanent(String userId, boolean permanent);
+
+    public List<SlangDTO> findListByUserIdAndPermanentAndTemplate(String userId, boolean permanent, Template template);
 
 
 }
