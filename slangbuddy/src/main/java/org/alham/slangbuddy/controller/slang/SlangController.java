@@ -21,11 +21,22 @@ public class SlangController {
         return "index";
     }
 
+    /**
+     * 슬랭 생성
+     * @param slangDTO
+     * @return
+     */
     @PostMapping("/create")
     public SlangDTO create(@RequestBody SlangDTO slangDTO){
         return slangService.create(slangDTO);
     }
 
+    /**
+     * @param userId
+     * @return
+     */
+
+    //TODO - userId 로 받는것 -> jwt 토큰에서 받는걸로 수정해야함
     @GetMapping("/find/{userId}")
     public List<SlangDTO> slangList(@PathVariable String userId){
         return slangService.findListByUserId(userId);

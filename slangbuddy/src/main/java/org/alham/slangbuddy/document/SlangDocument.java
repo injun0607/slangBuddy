@@ -9,6 +9,8 @@ import org.alham.slangbuddy.enums.Template;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Document
 @Getter
 @NoArgsConstructor
@@ -28,9 +30,11 @@ public class SlangDocument {
     private boolean permanent;
     //기억 할지 여부
     private boolean delete;
+    private LocalDateTime createdDate = LocalDateTime.now();
+
 
     @Builder
-    public SlangDocument(String userId, String name, String description, Intensity intensity, String answer,Template template, boolean login) {
+    public SlangDocument(String userId, String name, String description, Intensity intensity, String answer,Template template, boolean login, boolean delete) {
         this.userId = userId;
         this.name = name;
         this.description = description;
@@ -38,6 +42,7 @@ public class SlangDocument {
         this.answer = answer;
         this.template = template;
         this.login = login;
+        this.delete = delete;
     }
 
     @Builder
@@ -51,6 +56,14 @@ public class SlangDocument {
 
     public void updatePermanent(boolean permanent) {
         this.permanent = permanent;
+    }
+
+    public void updateDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public void tempSetId(String id){
+        this.id = id;
     }
 
 
