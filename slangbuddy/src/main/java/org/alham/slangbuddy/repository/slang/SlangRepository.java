@@ -16,4 +16,6 @@ public interface SlangRepository extends MongoRepository<SlangDocument, String>{
 
     public List<SlangDocument> findListByUserIdAndDeleteOrderByCreatedDate(String userId, boolean delete);
 
+    public List<SlangDocument> findListByUserIdAndDeleteAndTemplateOrderByCreatedDate(String userId, boolean delete, Template template);
+
 }
