@@ -19,6 +19,8 @@ public class UserDTO {
 
     private String name;
 
+    private String nickName;
+
     private String userId;
 
     private int age;

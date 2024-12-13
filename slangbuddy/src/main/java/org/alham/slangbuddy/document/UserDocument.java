@@ -22,6 +22,8 @@ public class UserDocument {
 
     private String name;
 
+    private String nickName;
+
     @Indexed(unique = true)
     private String userId;
 
@@ -29,12 +31,12 @@ public class UserDocument {
     private UserLoginType loginType;
     private UserRole userRole;
 
-
     private List<String> features = new ArrayList<>();
 
     @Builder
-    public UserDocument(String name, String userId, int age, UserLoginType loginType, UserRole userRole) {
+    public UserDocument(String name, String nickName,String userId, int age, UserLoginType loginType, UserRole userRole) {
         this.name = name;
+        this.nickName = nickName;
         this.userId = userId;
         this.age = age;
         this.loginType = loginType;
@@ -43,6 +45,10 @@ public class UserDocument {
 
     public void updateFeatures(List<String> features) {
         this.features = features;
+    }
+
+    public void updateUserInfo(String nickName){
+        this.nickName = nickName;
     }
 
 

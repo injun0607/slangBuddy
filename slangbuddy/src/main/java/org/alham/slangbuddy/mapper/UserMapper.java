@@ -11,6 +11,7 @@ public class UserMapper {
         return UserDocument.builder()
                 .userId(userDTO.getUserId())
                 .name(userDTO.getName())
+                .nickName(userDTO.getNickName())
                 .age(userDTO.getAge())
                 .loginType(userDTO.getLoginType())
                 .userRole(userDTO.getUserRole())
@@ -19,8 +20,10 @@ public class UserMapper {
 
     public UserDTO createDTOtWithFeature(UserDocument userDocument){
         UserDTO dto = UserDTO.builder()
+                .id(userDocument.getId())
                 .userId(userDocument.getUserId())
                 .name(userDocument.getName())
+                .nickName(userDocument.getNickName())
                 .age(userDocument.getAge())
                 .loginType(userDocument.getLoginType())
                 .userRole(userDocument.getUserRole())
@@ -35,6 +38,7 @@ public class UserMapper {
                 .id(userDocument.getId())
                 .userId(userDocument.getUserId())
                 .name(userDocument.getName())
+                .nickName(userDocument.getNickName())
                 .age(userDocument.getAge())
                 .loginType(userDocument.getLoginType())
                 .userRole(userDocument.getUserRole())

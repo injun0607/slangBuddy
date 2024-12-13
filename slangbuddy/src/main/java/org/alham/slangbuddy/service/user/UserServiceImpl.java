@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService{
         UserDocument save = userRepository.save(userDocument);
         return userMapper.createDTO(save);
     }
+
+    @Override
+    public UserDTO updateUserInfo(UserDTO userDTO) {
+        UserDocument userDocument = userRepository.findById(userDTO.getId()).orElseThrow();
+        userDocument.updateUserInfo(userDTO.getNickName());
+        UserDocument save = userRepository.save(userDocument);
+        return userMapper.createDTO(save);
+    }
+
+
 }

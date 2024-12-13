@@ -10,4 +10,6 @@ public interface UserService {
 
     public UserDTO updateUserFeatures(UserDTO userDTO);
 
+    public UserDTO updateUserInfo(UserDTO userDTO);
+
 }
