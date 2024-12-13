@@ -10,6 +10,8 @@ public interface SlangService {
 
     public SlangDTO create(SlangDTO slangDTO);
 
+    public SlangDTO createNotLogin(SlangDTO slangDTO);
+
     public List<SlangDTO> findListByUserId(String userId);
 
     public List<SlangDTO> updatePermanent(String userId, boolean permanent ,List<SlangDTO> slangDtoList);
@@ -17,6 +19,8 @@ public interface SlangService {
     public List<SlangDTO> findListByUserIdAndPermanent(String userId, boolean permanent);
 
     public List<SlangDTO> findListByUserIdAndPermanentAndTemplate(String userId, boolean permanent, Template template);
+
+    public List<SlangDTO> findListByUserIdAndDeleteOrderByCreatedDate(String userId, boolean delete, Template template);
 
 
 }

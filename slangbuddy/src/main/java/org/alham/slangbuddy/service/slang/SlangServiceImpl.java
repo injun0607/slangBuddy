@@ -55,6 +55,13 @@ public class SlangServiceImpl implements SlangService{
     }
 
     @Override
+    public SlangDTO createNotLogin(SlangDTO slangDTO) {
+        String aiResponse = aiResponseService.getAiResponse(slangDTO);
+        slangDTO.setAnswer(aiResponse);
+        return slangDTO;
+    }
+
+    @Override
     public List<SlangDTO> findListByUserId(String userId) {
         List<SlangDocument> slangDocumentList = slangRepository.findListByUserId(userId);
         return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
@@ -104,4 +111,9 @@ public class SlangServiceImpl implements SlangService{
         return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
     }
 
+    @Override
+    public List<SlangDTO> findListByUserIdAndDeleteOrderByCreatedDate(String userId, boolean delete, Template template) {
+        List<SlangDocument> slangDocumentList = slangRepository.findListByUserIdAndDeleteAndTemplateOrderByCreatedDate(userId, delete, template);
+        return slangDocumentList.stream().map(slangMapper::createDTOLogin).toList();
+    }
 }
