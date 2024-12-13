@@ -4,9 +4,7 @@ import java.util.Arrays;
 
 public enum Template {
 
-    BASIC, HAM;
-
-
+    BASIC, HAM, META;
 
     public static Template getTemplate(String template) {
         return Arrays.stream(Template.values()).anyMatch(t -> t.name().equals(template))

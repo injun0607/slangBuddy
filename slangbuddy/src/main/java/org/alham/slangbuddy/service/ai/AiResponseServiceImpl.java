@@ -48,6 +48,13 @@ public class AiResponseServiceImpl implements AiResponseService{
                         .user(slangDTO.getDescription())
                         .stream()
                         .content();
+            case META:
+                return chatClient.prompt().system(s -> s.text(AiPrompt.META_SYSTEM_CHAT)
+                        .param("user_name", slangDTO.getName()))
+                        .advisors()
+                        .user(slangDTO.getDescription())
+                        .stream()
+                        .content();
             default:
                 return chatClient.prompt().system(s -> s.text(AiPrompt.DEFAULT_SYSTEM_CHAT)
                         .param("user_name", slangDTO.getName())
