@@ -9,6 +9,9 @@ import org.alham.slangbuddy.mapper.SlangMapper;
 import org.alham.slangbuddy.repository.slang.SlangRepository;
 import org.alham.slangbuddy.service.ai.AiResponseService;
 import org.alham.slangbuddy.service.ai.AiResponseServiceImpl;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,7 +31,17 @@ public class SlangServiceImpl implements SlangService{
         //UserRole 임시
         UserRole userRole = UserRole.BASIC;
 
-        String aiResponse = aiResponseService.getAiResponse(slangDTO);
+        List<Message> messageList = new ArrayList<>();
+        List<SlangDocument> userSlangList =
+                slangRepository.findListByUserIdAndDeleteAndTemplateOrderByCreatedDate(slangDTO.getUserId(), false, Template.META);
+        userSlangList.forEach(slangDocument -> {
+            messageList.add(new UserMessage(slangDocument.getDescription()));
+            messageList.add(new AssistantMessage(slangDocument.getAnswer()));
+        });
+
+        SlangDocument slangDocument1 = userSlangList.get(0);
+
+        String aiResponse = aiResponseService.getAiResponse(slangDTO,messageList);
         slangDTO.setAnswer(aiResponse);
 
         SlangDocument slangDocument = slangDTO.isLogin() ?

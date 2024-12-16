@@ -1,19 +1,25 @@
 package org.alham.slangbuddy.config;
 
+import lombok.RequiredArgsConstructor;
+import org.alham.slangbuddy.config.advisor.LoggingAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
 
 @Configuration
+@RequiredArgsConstructor
 public class AiConfig {
+
+//    private final LoggingAdvisor loggingAdvisor;
 
     @Bean
     ChatClient chatClient(ChatClient.Builder builder) {
-        return builder.build();
+        return builder.defaultAdvisors(new SimpleLoggerAdvisor()).build();
     }
 
 
