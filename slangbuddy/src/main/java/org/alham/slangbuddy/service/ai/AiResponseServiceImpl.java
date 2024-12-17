@@ -29,7 +29,7 @@ public class AiResponseServiceImpl implements AiResponseService{
     public String getAiResponse(SlangDTO slangDTO, List<Message> messageList) {
 
         //TODO: Flux 더 괜찮게 사용할수있는 방법 찾기
-        return chat(slangDTO)
+        return chat(slangDTO,messageList)
                 .collectList()  // 모든 청크를 리스트로 수집
                 .map(chunks -> String.join("", chunks))  // 청크들을 하나의 문자열로 결합
                 .block();
@@ -66,6 +66,7 @@ public class AiResponseServiceImpl implements AiResponseService{
             case HAM:
                 return chatClient.prompt().system(s -> s.text(AiPrompt.HAM_SYSTEM_CHAT))
                         .user(slangDTO.getDescription())
+                        .messages(messageList)
                         .stream()
                         .content();
             case META:

@@ -33,7 +33,7 @@ public class SlangServiceImpl implements SlangService{
 
         List<Message> messageList = new ArrayList<>();
         List<SlangDocument> userSlangList =
-                slangRepository.findListByUserIdAndDeleteAndTemplateOrderByCreatedDate(slangDTO.getUserId(), false, Template.META);
+                slangRepository.findListByUserIdAndDeleteAndTemplateOrderByCreatedDate(slangDTO.getUserId(), false, slangDTO.getTemplate());
         userSlangList.forEach(slangDocument -> {
             messageList.add(new UserMessage(slangDocument.getDescription()));
             messageList.add(new AssistantMessage(slangDocument.getAnswer()));
