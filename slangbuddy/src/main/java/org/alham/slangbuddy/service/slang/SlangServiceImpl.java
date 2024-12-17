@@ -39,8 +39,6 @@ public class SlangServiceImpl implements SlangService{
             messageList.add(new AssistantMessage(slangDocument.getAnswer()));
         });
 
-        SlangDocument slangDocument1 = userSlangList.get(0);
-
         String aiResponse = aiResponseService.getAiResponse(slangDTO,messageList);
         slangDTO.setAnswer(aiResponse);
 
@@ -52,11 +50,9 @@ public class SlangServiceImpl implements SlangService{
         // permanent라는것이 있는데 , 이것은 사용자가 해당 대화를 영구적으로 기억하겠다는 뜻
         // 만약 permanent로 저장되어있는개수가 max 개수랑 같다면 계속 삭제한다.
 
-        //deleteCheckList는 delete가 false인것들만 가져온다.
-        List<SlangDocument> deleteCheckList = slangRepository.findListByUserIdAndDeleteOrderByCreatedDate(slangDTO.getUserId(), false);
-        if(deleteCheckList.size() >= userRole.getMaxSaved()){
+        if(userSlangList.size() >= userRole.getMaxSaved()){
             //맨처음에 해당하는걸 지운다
-            deleteCheckList.stream().findFirst().ifPresent(slangDoc -> {
+            userSlangList.stream().filter(slangDoc->!slangDoc.isPermanent()).findFirst().ifPresent(slangDoc -> {
                 slangDoc.updateDelete(true);
                 slangRepository.save(slangDoc);
             });
@@ -89,7 +85,7 @@ public class SlangServiceImpl implements SlangService{
         List<String> slangIdList = slangDTOList.stream().map(SlangDTO::getId).toList();
 
         //기존 slangList 가져오기
-        List<SlangDocument> alreadySlangList = slangRepository.findListByUserIdAndPermanent(userId, true);
+        List<SlangDocument> alreadySlangList = slangRepository.findListByUserIdAndPermanent(userId, permanent);
         List<SlangDocument> updateOppositeList = new ArrayList<>();
 
         //리스트 확인 후 -> 해당하는 항목이 없으면 permanent false 로 변경

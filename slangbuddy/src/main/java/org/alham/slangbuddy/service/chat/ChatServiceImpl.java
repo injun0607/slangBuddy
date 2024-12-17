@@ -36,4 +36,8 @@ public class ChatServiceImpl implements ChatService{
         }
     }
 
+    @Override
+    public List<SlangDTO> updatePermanent(String userId, boolean permanent ,List<SlangDTO> slangDTOList) {
+        return slangService.updatePermanent(userId, permanent, slangDTOList);
+    }
 }

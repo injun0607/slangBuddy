@@ -52,12 +52,5 @@ public class SlangController {
         return slangService.findListByUserIdAndPermanent(userId, permanent);
     }
 
-    @GetMapping("/find/permanent/template")
-    public List<SlangDTO> templateSlangList(@PathVariable String userId , @PathVariable boolean permanent, @PathVariable String template){
-        return null;
-    }
-
-
-
 
 }

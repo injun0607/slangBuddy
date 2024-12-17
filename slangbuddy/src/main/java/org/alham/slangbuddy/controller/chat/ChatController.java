@@ -25,7 +25,7 @@ public class ChatController {
     @GetMapping("/{template}")
     public List<SlangDTO> view(@PathVariable("template") String template){
 
-        String userId = "userId";
+        String userId = "67493344f1d5406fadb1d095";
         //TODO - 유저가 접속시 해당 유저의 idx를 받아와서 idx 정보를 통해 조회해야한다.
         //TODO - 템플릿과 저장된 정보를 가져와야함.
         Template tem = Template.getTemplate(template);
@@ -48,6 +48,17 @@ public class ChatController {
      */
     public SlangDTO talkNotLogin(@RequestBody SlangDTO slangDTO){
         return chatService.talk(slangDTO);
+    }
+
+    @PostMapping("/update/permanent/{permanent}")
+    public List<SlangDTO> updatePermanent(@RequestBody List<SlangDTO> slangDTOList,@PathVariable(name="permanent") boolean permanent){
+        String userId = "67493344f1d5406fadb1d095";
+        //TODO - 유저가 접속시 해당 유저의 idx를 받아와서 idx 정보를 통해 조회해야한다.
+        //TODO - 템플릿과 저장된 정보를 가져와야함.
+
+
+        chatService.updatePermanent(userId,permanent,slangDTOList);
+        return null;
     }
 
 

@@ -11,4 +11,7 @@ public interface ChatService {
 
     public SlangDTO talk(SlangDTO slangDTO);
 
+    public List<SlangDTO> updatePermanent(String userId, boolean permanent ,List<SlangDTO> slangDTOList
+    );
+
 }
