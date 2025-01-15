@@ -2,16 +2,14 @@ package org.alham.slangbuddy.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class TestMainController {
 
     private final OpenAiChatModel openAiChatModel;
@@ -22,8 +20,14 @@ public class TestMainController {
         Map<String, String> responses = new HashMap<>();
 
         String openAiResponse = openAiChatModel.call(message);
-        responses.put("openai(chatGPT) 응답", openAiResponse);
+        responses.put("data", openAiResponse);
+        System.out.println("openai(chatGPT) 응답: " + openAiResponse);
 
         return responses;
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
