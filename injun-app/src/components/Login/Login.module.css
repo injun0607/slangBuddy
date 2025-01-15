@@ -1,0 +1,77 @@
+/* 전체 화면 배경 */
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #fef5e7, #f8ecd6); /* 부드러운 베이지 톤 */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+  }
+  
+  /* 로그인 박스 */
+  .loginBox {
+    background: #ffffff;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  /* 제목과 부제목 */
+  .loginTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333333;
+  }
+  
+  .loginSubtitle {
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+  }
+  
+  /* 버튼 그룹 */
+  .loginButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* 플랫폼 로그인 버튼 */
+  .loginButton {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+  }
+  
+  .loginButton:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* 플랫폼별 버튼 색상 */
+  .apple {
+    background: #555555; /* 애플: 다크 그레이 */
+  }
+  
+  .naver {
+    background: #03c75a; /* 네이버: 초록색 */
+  }
+  
+  .kakao {
+    background: #fee500; /* 카카오: 노란색 */
+    color: #3c1e1e;
+  }
+  
+  .google {
+    background: #4285f4; /* 구글: 파란색 */
+  }
