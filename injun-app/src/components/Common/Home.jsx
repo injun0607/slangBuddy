@@ -13,6 +13,12 @@ const Home = () =>{
                 <button className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600">
                     <Link to='/chat'>채팅하기</Link>
                 </button>
+                <button className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600">
+                    <Link to='/brain'>브레인 스토밍</Link>
+                </button>
+                <button className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600">
+                    <Link to='/box'>랜덤박스</Link>
+                </button>
             </nav>
         </div>
     )

@@ -8,6 +8,7 @@ const ChateSelectBox = () =>{
         <div>
             <div className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600"><Link to="/chat/ham">Ham 이동</Link></div>
             <div className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600"><Link to="/chat/meta">Meta 이동</Link></div>
+            <div className="px-6 py-2 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-600"><Link to="/chat/test">Test 이동</Link></div>
         </div>
     )
 

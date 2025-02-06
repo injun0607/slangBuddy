@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]); // 채팅 메시지 리스트
   const [input, setInput] = useState(""); // 사용자가 입력 중인 메시지
