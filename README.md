@@ -1,2 +1,4 @@
-# slangBuddy
-project slang Buddy
+# React연습용 프로젝트
+
+# 목적
+리액트 연습장과 숙달이 되면 미리 정의한 프롬프트를 통해 테마에 맞는 대화를 할 수 있는 웹 챗봇
